@@ -567,6 +567,21 @@ task.spawn(function()
         status.Text = "No games are published yet. Check back soon."
         return
     end
+    local plansOkay, accessPlans = pcall(function()
+        return HttpService:JSONDecode(game:HttpGet(BASE .. "/api/access/plans"))
+    end)
+    local allAccessReady = plansOkay and type(accessPlans) == "table"
+        and accessPlans.ready and type(accessPlans.plans) == "table"
+    if allAccessReady then
+        local lowest
+        for _, plan in ipairs(accessPlans.plans) do
+            local price = tonumber(plan.price)
+            if price and (not lowest or price < lowest) then lowest = price end
+        end
+        if lowest then
+            priceLabel.Text = "All scripts from <b>" .. tostring(lowest) .. " Robux</b> :)"
+        end
+    end
     if not game:IsLoaded() then game.Loaded:Wait() end
     if not gui.Parent or closing then return end
     for _, entry in ipairs(entries) do
@@ -581,8 +596,10 @@ task.spawn(function()
     if matched then
         purchaseLink = BASE .. "/?script=" .. HttpService:UrlEncode(tostring(matched.id)) .. "#games"
         linkBox.Text = purchaseLink
-        priceLabel.Text = "Pay <b>" .. tostring(tonumber(matched.pass_price) or 150)
-            .. " Robux</b> to get access :)"
+        if not allAccessReady then
+            priceLabel.Text = "Pay <b>" .. tostring(tonumber(matched.pass_price) or 150)
+                .. " Robux</b> to get access :)"
+        end
         status.Text = "Access available for " .. tostring(matched.game_name or matched.name or "this game")
     else
         status.Text = "Choose your game on the buyer page."
