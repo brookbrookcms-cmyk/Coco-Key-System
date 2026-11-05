@@ -49,9 +49,9 @@ local function line(target, x1, y1, x2, y2, thickness, color, transparency)
     return object
 end
 local white = Color3.fromRGB(248, 248, 249)
-local gray = Color3.fromRGB(157, 157, 164)
-local charcoal = Color3.fromRGB(23, 23, 25)
-local black = Color3.fromRGB(11, 11, 13)
+local gray = Color3.fromRGB(194, 196, 202)
+local charcoal = Color3.fromRGB(43, 45, 50)
+local black = Color3.fromRGB(29, 30, 34)
 
 local gui = new("ScreenGui", {
     Name = "CocoAccessLauncher", ResetOnSpawn = false, IgnoreGuiInset = true,
@@ -69,14 +69,7 @@ local panel = new("CanvasGroup", {
     ClipsDescendants = true, Active = true
 }, gui)
 round(panel, 22)
-border(panel, white, 0.24, 1.4)
-new("UIGradient", {
-    Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(21, 21, 23)),
-        ColorSequenceKeypoint.new(0.55, black),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(17, 17, 19))
-    }), Rotation = 90
-}, panel)
+border(panel, white, 0.20, 1.4)
 local panelScale = new("UIScale", {Scale = 1}, panel)
 local glowScale = new("UIScale", {Scale = 1}, glow)
 
@@ -338,12 +331,12 @@ pressable(close, charcoal, Color3.fromRGB(9, 9, 10))
 pressable(submit, white, Color3.fromRGB(215, 215, 217))
 pressable(back, charcoal, Color3.fromRGB(13, 13, 15))
 
-local currentWidth, currentHeight, fittedScale = 790, 440, 1
+local currentWidth, currentHeight, fittedScale = 520, 340, 1
 local function layout()
     local camera = workspace.CurrentCamera
     local viewport = camera and camera.ViewportSize or Vector2.new(1280, 720)
     local mobile = viewport.X < 650
-    currentWidth, currentHeight = mobile and 360 or 790, mobile and 405 or 440
+    currentWidth, currentHeight = mobile and 340 or 520, mobile and 360 or 340
     fittedScale = math.min(1, (viewport.X - 20) / currentWidth,
         (viewport.Y - 40) / currentHeight)
     rect(panel, 0, 0, currentWidth, currentHeight)
@@ -353,77 +346,77 @@ local function layout()
     glowScale.Scale = fittedScale
     panelScale.Scale = fittedScale
     if mobile then
-        rect(leftWave, -115, 130, 270, 75)
-        rect(rightWave, 255, 145, 220, 70)
-        rect(logo, 19, 19, 70, 80); logoScale.Scale = 0.64
-        rect(divider, 70, 22, 1, 55)
-        rect(title, 86, 17, 210, 38); title.TextSize = 26
-        rect(badge, 86, 56, 132, 23)
-        rect(badgeIcon, 12, 5, 21, 21)
-        rect(badgeText, 35, 0, 90, 23); badgeText.TextSize = 10
-        rect(close, 313, 19, 29, 29); close.TextSize = 22
-        rect(topLine, 239, 80, 80, 1)
-        rect(topLineLight, 292, 80, 27, 2)
-        rect(headerRule, 17, 96, 326, 1)
-        rect(main, 0, 0, 360, 405)
-        rect(headline, 21, 113, 318, 37); headline.TextSize = 20
-        rect(priceLabel, 21, 151, 318, 29); priceLabel.TextSize = 15
-        rect(accessLabel, 20, 204, 320, 24); accessLabel.TextSize = 13
-        rect(linkFrame, 20, 230, 320, 47)
-        rect(linkIcon, 12, 9, 34, 29)
-        rect(linkBox, 53, 0, 256, 47); linkBox.TextSize = 12
-        rect(copy, 20, 290, 190, 52)
-        rect(copyIcon, 14, 16, 23, 23)
-        rect(copyText, 36, 0, 150, 52); copyText.TextSize = 12
-        rect(haveKey, 221, 290, 119, 52)
-        rect(keyIcon, 11, 17, 24, 24)
-        rect(keyText, 37, 0, 80, 52); keyText.TextSize = 11
-        rect(statusDot, 22, 364, 6, 6)
-        rect(status, 35, 354, 308, 26); status.TextSize = 11
-        rect(keyScreen, 0, 0, 360, 405)
-        rect(keyHeadline, 20, 116, 320, 37); keyHeadline.TextSize = 21
-        rect(keyHelp, 20, 151, 320, 41); keyHelp.TextSize = 13
-        rect(keyInputFrame, 20, 221, 320, 51)
-        rect(keyInput, 14, 0, 292, 51); keyInput.TextSize = 15
-        rect(submit, 20, 288, 190, 52); submit.TextSize = 12
-        rect(back, 221, 288, 119, 52); back.TextSize = 12
-        rect(keyStatus, 20, 353, 320, 32); keyStatus.TextSize = 11
+        rect(leftWave, -115, 120, 250, 68)
+        rect(rightWave, 244, 132, 210, 65)
+        rect(logo, 18, 17, 70, 80); logoScale.Scale = 0.57
+        rect(divider, 65, 19, 1, 53)
+        rect(title, 79, 14, 208, 36); title.TextSize = 24
+        rect(badge, 80, 50, 129, 24)
+        rect(badgeIcon, 11, 6, 20, 20)
+        rect(badgeText, 34, 0, 88, 24); badgeText.TextSize = 10
+        rect(close, 294, 16, 30, 30); close.TextSize = 22
+        rect(topLine, 225, 75, 72, 1)
+        rect(topLineLight, 267, 75, 30, 2)
+        rect(headerRule, 16, 87, 308, 1)
+        rect(main, 0, 0, 340, 360)
+        rect(headline, 18, 101, 304, 37); headline.TextSize = 19
+        rect(priceLabel, 18, 138, 304, 27); priceLabel.TextSize = 15
+        rect(accessLabel, 18, 184, 304, 23); accessLabel.TextSize = 13
+        rect(linkFrame, 17, 210, 306, 45)
+        rect(linkIcon, 11, 8, 34, 29)
+        rect(linkBox, 51, 0, 246, 45); linkBox.TextSize = 12
+        rect(copy, 17, 267, 177, 47)
+        rect(copyIcon, 12, 13, 23, 23)
+        rect(copyText, 34, 0, 140, 47); copyText.TextSize = 11
+        rect(haveKey, 203, 267, 120, 47)
+        rect(keyIcon, 10, 14, 24, 24)
+        rect(keyText, 36, 0, 82, 47); keyText.TextSize = 11
+        rect(statusDot, 20, 334, 6, 6)
+        rect(status, 32, 323, 294, 27); status.TextSize = 11
+        rect(keyScreen, 0, 0, 340, 360)
+        rect(keyHeadline, 17, 103, 306, 37); keyHeadline.TextSize = 20
+        rect(keyHelp, 17, 139, 306, 38); keyHelp.TextSize = 13
+        rect(keyInputFrame, 17, 206, 306, 48)
+        rect(keyInput, 13, 0, 280, 48); keyInput.TextSize = 15
+        rect(submit, 17, 266, 177, 47); submit.TextSize = 12
+        rect(back, 203, 266, 120, 47); back.TextSize = 12
+        rect(keyStatus, 17, 323, 306, 29); keyStatus.TextSize = 11
     else
-        rect(leftWave, -152, 149, 460, 107)
-        rect(rightWave, 554, 150, 420, 100)
-        rect(logo, 36, 29, 70, 80); logoScale.Scale = 1
-        rect(divider, 114, 30, 1, 77)
-        rect(title, 137, 16, 360, 66); title.TextSize = 44
-        rect(badge, 139, 80, 185, 32)
-        rect(badgeIcon, 16, 7, 21, 21)
-        rect(badgeText, 43, 0, 130, 32); badgeText.TextSize = 14
-        rect(close, 729, 27, 42, 42); close.TextSize = 29
-        rect(topLine, 500, 75, 205, 1)
-        rect(topLineLight, 640, 75, 65, 2)
-        rect(headerRule, 30, 125, 730, 1)
-        rect(main, 0, 0, 790, 440)
-        rect(headline, 67, 145, 656, 46); headline.TextSize = 30
-        rect(priceLabel, 67, 190, 656, 34); priceLabel.TextSize = 22
-        rect(accessLabel, 70, 261, 650, 27); accessLabel.TextSize = 17
-        rect(linkFrame, 70, 289, 650, 55)
-        rect(linkIcon, 18, 12, 34, 30)
-        rect(linkBox, 65, 0, 574, 55); linkBox.TextSize = 18
-        rect(copy, 70, 356, 356, 55)
-        rect(copyIcon, 76, 17, 23, 23)
-        rect(copyText, 109, 0, 243, 55); copyText.TextSize = 19
-        rect(haveKey, 443, 356, 277, 55)
-        rect(keyIcon, 72, 19, 24, 24)
-        rect(keyText, 102, 0, 143, 55); keyText.TextSize = 19
-        rect(statusDot, 267, 424, 7, 7)
-        rect(status, 282, 413, 420, 27); status.TextSize = 14
-        rect(keyScreen, 0, 0, 790, 440)
-        rect(keyHeadline, 70, 146, 650, 46); keyHeadline.TextSize = 31
-        rect(keyHelp, 70, 194, 650, 37); keyHelp.TextSize = 18
-        rect(keyInputFrame, 70, 271, 650, 60)
-        rect(keyInput, 20, 0, 610, 60); keyInput.TextSize = 21
-        rect(submit, 70, 350, 356, 55); submit.TextSize = 19
-        rect(back, 443, 350, 277, 55); back.TextSize = 19
-        rect(keyStatus, 70, 412, 650, 25); keyStatus.TextSize = 14
+        rect(leftWave, -135, 130, 345, 82)
+        rect(rightWave, 380, 128, 300, 78)
+        rect(logo, 24, 18, 70, 80); logoScale.Scale = 0.70
+        rect(divider, 88, 20, 1, 58)
+        rect(title, 106, 10, 305, 49); title.TextSize = 32
+        rect(badge, 107, 55, 153, 27)
+        rect(badgeIcon, 13, 6, 21, 21)
+        rect(badgeText, 39, 0, 108, 27); badgeText.TextSize = 12
+        rect(close, 478, 16, 29, 29); close.TextSize = 22
+        rect(topLine, 344, 71, 117, 1)
+        rect(topLineLight, 423, 71, 38, 2)
+        rect(headerRule, 22, 91, 476, 1)
+        rect(main, 0, 0, 520, 340)
+        rect(headline, 26, 105, 468, 37); headline.TextSize = 22
+        rect(priceLabel, 26, 141, 468, 27); priceLabel.TextSize = 17
+        rect(accessLabel, 28, 188, 464, 22); accessLabel.TextSize = 13
+        rect(linkFrame, 28, 215, 464, 43)
+        rect(linkIcon, 13, 7, 34, 29)
+        rect(linkBox, 53, 0, 400, 43); linkBox.TextSize = 14
+        rect(copy, 28, 270, 256, 43)
+        rect(copyIcon, 39, 11, 23, 23)
+        rect(copyText, 65, 0, 183, 43); copyText.TextSize = 14
+        rect(haveKey, 296, 270, 196, 43)
+        rect(keyIcon, 39, 12, 24, 24)
+        rect(keyText, 68, 0, 114, 43); keyText.TextSize = 14
+        rect(statusDot, 119, 323, 7, 7)
+        rect(status, 134, 314, 350, 25); status.TextSize = 12
+        rect(keyScreen, 0, 0, 520, 340)
+        rect(keyHeadline, 28, 105, 464, 37); keyHeadline.TextSize = 23
+        rect(keyHelp, 28, 141, 464, 36); keyHelp.TextSize = 15
+        rect(keyInputFrame, 28, 210, 464, 47)
+        rect(keyInput, 16, 0, 432, 47); keyInput.TextSize = 17
+        rect(submit, 28, 269, 256, 43); submit.TextSize = 14
+        rect(back, 296, 269, 196, 43); back.TextSize = 14
+        rect(keyStatus, 28, 313, 464, 27); keyStatus.TextSize = 12
     end
 end
 layout()
@@ -478,6 +471,11 @@ local function showScreen(which)
             {GroupTransparency = 0})
         animate(incoming, "move", 0.23, Enum.EasingStyle.Quad,
             {Position = UDim2.fromOffset(0, 0)})
+        task.delay(0.25, function()
+            if token == transitionId and not closing and incoming.Parent then
+                incoming.GroupTransparency = 0
+            end
+        end)
     end)
 end
 haveKey.Activated:Connect(function() showScreen("key") end)
@@ -601,3 +599,6 @@ animate(glowScale, "size", 0.35, Enum.EasingStyle.Quad, {Scale = fittedScale})
 animate(glowStroke, "fade", 0.35, Enum.EasingStyle.Quad, {Transparency = 0.82})
 animate(main, "move", 0.35, Enum.EasingStyle.Quad,
     {Position = UDim2.fromOffset(0, 0)})
+task.delay(0.40, function()
+    if gui.Parent and not closing then panel.GroupTransparency = 0 end
+end)
